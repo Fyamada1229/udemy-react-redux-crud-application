@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 const App = () => {
@@ -9,11 +9,16 @@ const App = () => {
   ];
 
   return (
-    <div className="App">
-      {profiles.map((profiles, index) => {
-        return <User name={profiles.name} age={profiles.age} key={index} />;
-      })}
-    </div>
+    <>
+      <div className="App">
+        {profiles.map((profiles, index) => {
+          return <User name={profiles.name} age={profiles.age} key={index} />;
+        })}
+      </div>
+      <div>
+        <Counter />
+      </div>
+    </>
   );
 };
 
@@ -25,6 +30,14 @@ const User = (props) => {
     </div>
   );
 };
+
+class Counter extends Component {
+  // Compnentの中ではrenderを使う
+  // returnを書く
+  render() {
+    return <div>counter</div>;
+  }
+}
 
 // ここは先頭が小文字でpropTypes
 User.propTypes = {
