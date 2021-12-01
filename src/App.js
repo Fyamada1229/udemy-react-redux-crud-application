@@ -26,11 +26,7 @@ const User = (props) => {
   );
 };
 
-// なぜかエラーになるか、ここではPropがpropになる先頭が小文字s
-// User.PropTypes = {
-//   name: PropTypes.string,
-// };
-
+// ここは先頭が小文字でpropTypes
 User.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number.isRequired,
