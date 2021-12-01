@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const App = () => {
   const profiles = [
     { name: "Taro", age: 10 },
     { name: "Futoshi", age: 31 },
-    { name: "No name" },
+    { name: "No name", age: 3 },
   ];
 
   return (
@@ -12,7 +13,6 @@ const App = () => {
       {profiles.map((profiles, index) => {
         return <User name={profiles.name} age={profiles.age} key={index} />;
       })}
-      <User name={"Futoshi"} age={31} />
     </div>
   );
 };
@@ -26,8 +26,14 @@ const User = (props) => {
   );
 };
 
-User.defaultProps = {
-  age: 1,
+// なぜかエラーになるか、ここではPropがpropになる先頭が小文字s
+// User.PropTypes = {
+//   name: PropTypes.string,
+// };
+
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired,
 };
 
 export default App;
