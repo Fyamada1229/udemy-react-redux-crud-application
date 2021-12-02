@@ -34,8 +34,15 @@ const User = (props) => {
 class Counter extends Component {
   // Compnentの中ではrenderを使う
   // returnを書く
+  constructor(props) {
+    super(props);
+    console.log(this.state);
+
+    this.state = { count: 0 };
+  }
+
   render() {
-    return <div>counter</div>;
+    return <div>counter: {this.state.count}</div>;
   }
 }
 
