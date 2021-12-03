@@ -41,8 +41,22 @@ class Counter extends Component {
     this.state = { count: 0 };
   }
 
+  handlePlusButton = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  handleMinus = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
+
   render() {
-    return <div>counter: {this.state.count}</div>;
+    return (
+      <>
+        <div>counter: {this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinus}>-1</button>
+      </>
+    );
   }
 }
 
