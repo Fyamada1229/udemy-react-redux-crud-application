@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import { INCREMENT, DECREMENT } from "../action";
 
 // 状態の初期
@@ -12,6 +11,7 @@ export default (state = initialState, action) => {
     case DECREMENT:
       return { value: state.value - 1 };
     default:
-      return;
+      // defalutの時はそのままstateを返す
+      return state;
   }
 };
