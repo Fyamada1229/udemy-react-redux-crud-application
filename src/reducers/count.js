@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from "../action";
+import { INCREMENT, DECREMENT, MULTIPLICATION } from "../action";
 
 // 状態の初期
 const initialState = { value: 0 };
@@ -10,6 +10,8 @@ export default (state = initialState, action) => {
       return { value: state.value + 1 };
     case DECREMENT:
       return { value: state.value - 1 };
+    case MULTIPLICATION:
+      return { value: state.value * 10 };
     default:
       // defalutの時はそのままstateを返す
       return state;

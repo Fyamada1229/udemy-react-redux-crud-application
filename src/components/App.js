@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { increment, decrement } from "../action";
+import { increment, decrement, multiplication } from "../action";
 import { User } from "./User";
 
 class App extends Component {
   render() {
     const props = this.props;
+
     return (
       <>
         <div>
@@ -15,6 +16,7 @@ class App extends Component {
           <h1>value: {props.value}</h1>
           <button onClick={props.increment}>+1</button>
           <button onClick={props.decrement}>-1</button>
+          <button onClick={props.multiplication}>10倍になる！！</button>
         </div>
       </>
     );
@@ -22,7 +24,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({ value: state.count.value });
-const mapDispatcToProps = { increment, decrement };
+const mapDispatcToProps = { increment, decrement, multiplication };
 
 // dispatchのショートハンドではない書き方。
 // const mapDispatcToProps = (dispatch) => ({

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { decrement } from "../action";
+import { increment, decrement, multiplication } from "../action/index";
+import { connect } from "react-redux";
 
 export const User = (props) => {
   return (
@@ -15,3 +16,8 @@ User.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number.isRequired,
 };
+
+const mapStateToProps = (state) => ({ value: state.count.value });
+const mapDispatcToProps = { increment, decrement, multiplication };
+
+export default connect(mapStateToProps, mapDispatcToProps)(User);
