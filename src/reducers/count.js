@@ -4,7 +4,7 @@ import { INCREMENT, DECREMENT, MULTIPLICATION } from "../action";
 const initialState = { value: 0 };
 
 // 関数の内部で受け取ったtypeでactionに返す
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case INCREMENT:
       return { value: state.value + 1 };
