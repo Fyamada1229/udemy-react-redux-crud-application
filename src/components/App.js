@@ -1,16 +1,21 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { increment, decrement } from "../action";
+import { User } from "./User";
 
 class App extends Component {
   render() {
     const props = this.props;
     return (
       <>
-        <div>value: {props.value}</div>
-        <button onClick={props.increment}>+1</button>
-        <button onClick={props.decrement}>-1</button>
+        <div>
+          <User name="Yamada" age="31" />
+        </div>
+        <div>
+          <h1>value: {props.value}</h1>
+          <button onClick={props.increment}>+1</button>
+          <button onClick={props.decrement}>-1</button>
+        </div>
       </>
     );
   }
@@ -26,18 +31,3 @@ const mapDispatcToProps = { increment, decrement };
 // });
 
 export default connect(mapStateToProps, mapDispatcToProps)(App);
-
-// const User = (props) => {
-//   return (
-//     <div>
-//       <h1>{props.name}</h1>
-//       <h1>{props.age}</h1>
-//     </div>
-//   );
-// };
-
-// // ここは先頭が小文字でpropTypes
-// User.propTypes = {
-//   name: PropTypes.string,
-//   age: PropTypes.number.isRequired,
-// };
