@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { readEvents } from "../action/index";
+import _ from "lodash";
 import { User } from "./User";
 
 class EventsIndex extends Component {
@@ -8,10 +9,17 @@ class EventsIndex extends Component {
     this.props.readEvents();
   }
 
-  render() {
-    const props = this.props;
+  readerEvents() {
+    return _.map(this.props.events, (event) => (
+      <tr ker={event.id}>
+        <td>{event.id}</td>
+        <td>{event.title}</td>
+        <td>{event.body}</td>
+      </tr>
+    ));
+  }
 
-    console.log(props.event);
+  render() {
     return (
       <>
         <div>
@@ -25,6 +33,7 @@ class EventsIndex extends Component {
               <th>内容</th>
             </tr>
           </thead>
+          <tbody>{this.readerEvents()}</tbody>
         </table>
       </>
     );
