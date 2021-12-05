@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, submit } from "redux-form";
 import { Link } from "react-router-dom";
 // import { postEvent } from "../action";
 
@@ -13,7 +13,12 @@ class EventsNew extends Component {
       meta: { touched, error },
     } = field;
 
-    return <div></div>;
+    return (
+      <div>
+        <input {...input} placeholder={label} type={type} />
+        {touched && error && <span>{error}</span>}
+      </div>
+    );
   }
 
   render() {
@@ -26,7 +31,7 @@ class EventsNew extends Component {
               name="title"
               type="text"
               component={this.rederField}
-            ></Field>
+            />
           </div>
           <div>
             <Field
@@ -34,9 +39,8 @@ class EventsNew extends Component {
               name="body"
               type="text"
               component={this.rederField}
-            ></Field>
+            />
           </div>
-
           <div>
             <input type="submit" value="Submit" disabled={false} />
             <Link to="/">キャンセル</Link>
@@ -50,8 +54,12 @@ class EventsNew extends Component {
 const validate = (values) => {
   const errors = {};
 
+  if (!values.title) errors.title = "タイトルを入れてください";
+  if (!values.body) errors.body = "タイトルを入れてください";
+
   return errors;
 };
+
 // const mapDispatcToProps = { postEvent };
 
 export default connect(
