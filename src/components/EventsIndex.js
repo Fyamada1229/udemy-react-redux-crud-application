@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { readEvents } from "../action/index";
 import _ from "lodash";
 import { User } from "./User";
+import { Link } from "react-router-dom";
 
 class EventsIndex extends Component {
   componentDidMount() {
@@ -35,6 +36,9 @@ class EventsIndex extends Component {
           </thead>
           <tbody>{this.readerEvents()}</tbody>
         </table>
+
+        <Link to={`/events/new`}>新規作成</Link>
+        <Link to="/user">ユーザー</Link>
       </>
     );
   }
