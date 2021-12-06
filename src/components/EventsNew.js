@@ -137,7 +137,11 @@ class EventsNew extends Component {
             />
           </div>
           <div>
-            <input type="submit" value="Submit" disabled={false} />
+            <input
+              type="submit"
+              value="Submit"
+              disabled={pristine || submitting}
+            />
             <Link to="/">キャンセル</Link>
           </div>
         </form>
