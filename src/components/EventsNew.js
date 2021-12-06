@@ -90,11 +90,12 @@ class EventsNew extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  rederField(field) {
+  renderField(field) {
     const {
       input,
       label,
       type,
+      // touched, errorはReduxFrom特有
       meta: { touched, error },
     } = field;
 
@@ -114,6 +115,8 @@ class EventsNew extends Component {
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
 
+    console.log(this.props);
+
     return (
       <>
         <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -122,7 +125,7 @@ class EventsNew extends Component {
               lavel="Title"
               name="title"
               type="text"
-              component={this.rederField}
+              component={this.renderField}
             />
           </div>
           <div>
@@ -130,7 +133,7 @@ class EventsNew extends Component {
               lavel="Body"
               name="body"
               type="text"
-              component={this.rederField}
+              component={this.renderField}
             />
           </div>
           <div>
