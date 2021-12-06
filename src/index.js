@@ -21,7 +21,7 @@ ReactDOM.render(
       <Switch>
         {/* <Route exact path="/user" component={User} /> */}
         <Route exact path="/" component={EventsIndex} />
-        <Route path="/events/new" component={EventsNew} />
+        <Route exact path="/events/new" component={EventsNew} />
       </Switch>
     </BrowserRouter>
   </Provider>,
