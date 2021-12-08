@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { readEvents } from "../action/index";
+// import _ from lodash は便利な関数をまとめて提供しているライブラリです。
 import _ from "lodash";
 import { User } from "./User";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ class EventsIndex extends Component {
   }
 
   readerEvents() {
+    // _.mapはlodashが提供する便利な関数です。
     return _.map(this.props.events, (event) => (
       <tr ker={event.id}>
         <td>{event.id}</td>
