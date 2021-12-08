@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import EventsIndex from "./components/EventsIndex";
 import EventsNew from "./components/EventsNew";
-//import User from "./components/User";
+import EventsShow from "./components/EventsShow";
 
 // アプリケーションのストアがここに集約しています
 // Redux DevToolsも設定
@@ -26,7 +26,9 @@ ReactDOM.render(
       <Switch>
         {/* <Route exact path="/user" component={User} /> */}
         <Route exact path="/" component={EventsIndex} />
-        <Route exact path="/events/new" component={EventsNew} />
+        <Route exact path="/events" component={EventsIndex} />
+        <Route path="/events/new" component={EventsNew} />
+        <Route path="/events/:id" component={EventsShow} />
       </Switch>
     </BrowserRouter>
   </Provider>,
