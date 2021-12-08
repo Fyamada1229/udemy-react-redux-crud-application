@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
-import { getEvent, deleteEvent, putEvent } from "../action";
+import { getEvent, deleteEvent, putEvent } from "../action/index";
 
 class EventsShow extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class EventsShow extends Component {
     // 本classに従属するメソッドにpropsを紐付ける(当該メソッドでpropsを利用する)ために
     // constructorで当該メソッドをbindしています。
     this.onSubmit = this.onSubmit.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   renderField(field) {
@@ -27,6 +28,12 @@ class EventsShow extends Component {
         {touched && error && <span>{error}</span>}
       </div>
     );
+  }
+
+  async onDeleteClick() {
+    const { id } = this.props.match.params;
+    await this.props.deleteEvent(id);
+    this.props.history.push("/");
   }
 
   async onSubmit(values) {
@@ -63,6 +70,9 @@ class EventsShow extends Component {
               disabled={pristine || submitting}
             />
             <Link to="/">キャンセル</Link>
+            <Link to="/" onClick={this.onDeleteClick}>
+              削除
+            </Link>
           </div>
         </form>
       </>
@@ -79,9 +89,9 @@ const validate = (values) => {
   return errors;
 };
 
-// const mapDispatcToProps = { postEvent };
+const mapDispatcToProps = { deleteEvent };
 
 export default connect(
   null,
-  null
+  mapDispatcToProps
 )(reduxForm({ validate, form: "eventShowForm" })(EventsShow));
