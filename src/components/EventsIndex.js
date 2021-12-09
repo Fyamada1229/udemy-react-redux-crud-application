@@ -5,6 +5,16 @@ import { readEvents } from "../action/index";
 import _ from "lodash";
 import { User } from "./User";
 import { Link } from "react-router-dom";
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from "material-ui/Table";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentAdd from "material-ui/svg-icons/content/add";
 
 class EventsIndex extends Component {
   componentDidMount() {
@@ -12,37 +22,45 @@ class EventsIndex extends Component {
   }
 
   readerEvents() {
-    // _.mapはlodashが提供する便利な関数です。
+    // _.mapはlodashが提供する便利な関数
     return _.map(this.props.events, (event) => (
-      <tr ker={event.id}>
-        <td>{event.id}</td>
-        <td>
+      <TableRow ker={event.id}>
+        <TableRowColumn>{event.id}</TableRowColumn>
+        <TableRowColumn>
           <Link to={`/events/${event.id}`}>{event.title}</Link>
-        </td>
-        <td>{event.body}</td>
-      </tr>
+        </TableRowColumn>
+        <TableRowColumn>{event.body}</TableRowColumn>
+      </TableRow>
     ));
   }
 
   render() {
+    const style = {
+      position: "fixed",
+      right: 12,
+      bottom: 12,
+    };
     return (
       <>
-        <div>
-          <User name="Yamada" age={31} />
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>タイトル</th>
-              <th>内容</th>
-            </tr>
-          </thead>
-          <tbody>{this.readerEvents()}</tbody>
-        </table>
+        <FloatingActionButton
+          style={style}
+          containerElement={<Link to={`/events/new`} />}
+        >
+          <ContentAdd></ContentAdd>
+        </FloatingActionButton>
+        <Table>
+          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>ID</TableHeaderColumn>
+              <TableHeaderColumn>タイトル</TableHeaderColumn>
+              <TableHeaderColumn>内容</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
 
-        <Link to={`/events/new`}>新規作成</Link>
-        <Link to="/user">ユーザー</Link>
+          <TableBody displayRowCheckbox={false}>
+            {this.readerEvents()}
+          </TableBody>
+        </Table>
       </>
     );
   }
