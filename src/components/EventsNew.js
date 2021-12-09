@@ -63,7 +63,7 @@ class EventsNew extends Component {
             <input
               type="submit"
               value="Submit"
-              disabled={pristine || submitting}
+              disabled={pristine || submitting || invalid}
             />
             <Link to="/">キャンセル</Link>
           </div>
