@@ -105,6 +105,8 @@ export default connect(
   mapStateToProps,
   mapDispatcToProps
 )(
+  // enableReinitialize: true は再初期化するときに必要コード。要するに
+  // 動的に変わるときに変更を追従する形にするための書く。
   reduxForm({ validate, form: "eventShowForm", enableReinitialize: true })(
     EventsShow
   )
