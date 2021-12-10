@@ -3,6 +3,8 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { getEvent, deleteEvent, putEvent } from "../action/index";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
 
 class EventsShow extends Component {
   constructor(props) {
@@ -28,10 +30,14 @@ class EventsShow extends Component {
     } = field;
 
     return (
-      <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched && error && <span>{error}</span>}
-      </div>
+      <TextField
+        hintText={label}
+        floatingLabelText={label}
+        type={type}
+        errorText={touched && error}
+        {...input}
+        fullWidth={true}
+      />
     );
   }
 
@@ -48,6 +54,8 @@ class EventsShow extends Component {
 
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const style = { margin: 12 };
+
     return (
       <>
         <h2>show</h2>
@@ -69,15 +77,22 @@ class EventsShow extends Component {
             />
           </div>
           <div>
-            <input
+            <RaisedButton
+              label="投稿"
               type="submit"
-              value="Submit"
+              style={style}
               disabled={pristine || submitting || invalid}
             />
-            <Link to="/">キャンセル</Link>
-            <Link to="/" onClick={this.onDeleteClick}>
-              削除
-            </Link>
+            <RaisedButton
+              label="キャンセル"
+              style={style}
+              containerElement={<Link to="/" />}
+            />
+            <RaisedButton
+              label="削除"
+              style={style}
+              onClick={this.onDeleteClick}
+            />
           </div>
         </form>
       </>

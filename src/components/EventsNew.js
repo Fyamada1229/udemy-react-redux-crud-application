@@ -65,7 +65,7 @@ class EventsNew extends Component {
           </div>
 
           <RaisedButton
-            label="Submit"
+            label="新規投稿"
             type="submit"
             style={style}
             disabled={pristine || submitting || invalid}
